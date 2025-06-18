@@ -36,6 +36,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('course/', include('courses.urls')),
     path('center/', include('centers.urls')),
+    path('applications', include('applications.urls')),
 
     # Swagger and Redoc URLs
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),

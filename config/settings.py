@@ -36,7 +36,8 @@ LOCAL_APPS = [
     'account',
     'common',
     'courses',
-    'centers'
+    'centers',
+    'applications',
 ]
 
 EXTERNAL_APPS = [
