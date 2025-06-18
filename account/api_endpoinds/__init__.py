@@ -1,2 +1,2 @@
-from .Login.LogautSession.views import *
-from .Login.LoginSession.views import *
+from .Register.views import *
+from .Auth.views import *

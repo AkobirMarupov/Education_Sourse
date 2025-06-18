@@ -31,4 +31,18 @@ class Course(BaseModel):
 
     def __str__(self):
         return self.title
+    
+    
+class CourseResource(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='resources')
+    title = models.CharField(max_length=255)
+    link = models.URLField(help_text="YouTube video havolasi")
+
+    class Meta:
+        verbose_name = 'Course Resource'
+        verbose_name_plural = 'Course Resources'
+
+    def __str__(self):
+        return f"{self.course.title} - {self.title}"
+
 

@@ -88,4 +88,3 @@ class Story(BaseModel):
 
     def view_count(self):
         return self.views.count()
-

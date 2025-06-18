@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from common.models import BaseModel
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from datetime import timedelta
 
 from account.manager import UserManager
 
@@ -39,4 +41,5 @@ class Profile(BaseModel):
 
     def __str__(self):
         return self.full_name
+    
 

@@ -1,10 +1,11 @@
 from django.urls import path
 from account.api_endpoinds import (
-    SessionLoginAPIView, SessionLogoutAPIView
+    UserRegisterUserAPIView, UserRegisterConfirmAPIView
 )
 
 
 urlpatterns = [
-    path('login/', SessionLoginAPIView.as_view(), name="login-session"),
-    path('logout/', SessionLogoutAPIView.as_view(), name="logout-session"),
+    # register
+    path('register/', UserRegisterUserAPIView.as_view(), name='register-user'),
+    path('register/confirm/', UserRegisterConfirmAPIView.as_view(), name='register-confirm')
 ]
