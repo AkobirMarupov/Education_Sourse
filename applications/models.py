@@ -1,6 +1,10 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 
+from account.models import Profile
+from centers.models import Center
+from courses.models import Course
 from common.models import BaseModel
 
 
@@ -41,3 +45,29 @@ class Application(BaseModel):
 
     def __str__(self):
         return str(self.student)
+
+
+
+class Certificate(BaseModel):
+    student = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+        related_name='certificates'
+    )
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name='certificates'
+    )
+    center = models.ForeignKey(
+        Center,
+        on_delete=models.CASCADE,
+        related_name='certificates'
+    )
+    issue_date = models.DateField(default=timezone.now)
+    certificate_file = models.FileField(upload_to='certificates/', null=True, blank=True)
+
+    def __str__(self):
+        student_name = getattr(self.student, 'full_name', str(self.student))
+        course_title = getattr(self.course, 'title', str(self.course))
+        return f"{student_name} - {course_title}"

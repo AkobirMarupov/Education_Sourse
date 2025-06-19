@@ -5,7 +5,6 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from rest_framework.parsers import MultiPartParser, FormParser
 
-from centers.models import Location
 from centers.api_endponds.Locations.Create.serializers import LocationCreateSerializer
 
 
@@ -24,12 +23,10 @@ class LocationCreateAPIView(CreateAPIView):
             ),
             400: "Bad Request"
         }
-    )
-    
+    )    
     
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        return Response(serializer.data, status=201)
-    
+        return Response(serializer.data, status=201)    
