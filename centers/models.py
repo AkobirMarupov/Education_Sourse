@@ -50,10 +50,30 @@ class Teacher(models.Model):
         return self.full_name
 
 
-class Location(BaseModel):
-    center = models.ForeignKey(Center, on_delete=models.CASCADE, related_name='locations')
-    name = models.CharField(max_length=255)  
-    address = models.TextField(blank=True, null=True) 
+class Region(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class City(models.Model):
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='cities')
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = ('region', 'name')
+
+    def __str__(self):
+        return f"{self.name} ({self.region.name})"
+
+
+class Location(models.Model):
+    center = models.ForeignKey('Center', on_delete=models.CASCADE, related_name='locations')
+    name = models.CharField(max_length=255)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True, blank=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
+    address = models.TextField(blank=True, null=True)
     latitude = models.DecimalField(max_digits=16, decimal_places=8, blank=True, null=True)
     longitude = models.DecimalField(max_digits=16, decimal_places=8, blank=True, null=True)
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 
-from .models import Center, Teacher, Location, Story
+from .models import Center, Teacher, Location, Story, Region, City
 
 class CenterAdmin(admin.ModelAdmin):
     list_display = ('name', 'owner', 'phone_number', 'payment_status')
@@ -52,9 +52,9 @@ admin.site.register(Teacher, TeacherAdmin)
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'center', 'address', 'latitude', 'longitude', 'map_link')
-    list_filter = ('center',)
-    search_fields = ('name', 'center__name', 'address')
+    list_display = ('region', 'city', 'name', 'center', 'address', 'map_link')
+    list_filter = ('center','region', 'city')
+    search_fields = ('name', 'region', 'city', 'center__name', 'address')
 
     @admin.display(description="Google Map")
     def map_link(self, obj):
@@ -74,3 +74,17 @@ class StoryAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return request.user.is_authenticated and (request.user.is_superuser or request.user.is_center_admin)
+
+
+@admin.register(Region)
+class RegionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    search_fields = ('name',)
+
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'region')
+    list_filter = ('region',)
+    search_fields = ('name',)
+    
