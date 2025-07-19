@@ -1,0 +1,1 @@
+web: gunicorn 'edso_new.wsgi'
