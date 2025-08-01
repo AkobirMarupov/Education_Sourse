@@ -1,6 +1,7 @@
 from rest_framework.generics import UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
+from centers.permissions import IsCenterAdmin
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
@@ -12,7 +13,7 @@ from centers.models import Teacher
 class TeacherUpdateView(UpdateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherUpdateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsCenterAdmin]
     parser_classes = [MultiPartParser, FormParser]
     lookup_field = 'id'
 

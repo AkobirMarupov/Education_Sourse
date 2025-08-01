@@ -35,7 +35,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('course/', include('courses.urls')),
-    path('center/', include('centers.urls')),
+    path('', include('centers.urls')),
+    path('', include('student.urls')),
     path('', include('applications.urls')),
 
     # Swagger and Redoc URLs

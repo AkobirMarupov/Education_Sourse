@@ -2,13 +2,14 @@ from rest_framework.generics import DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
+from centers.permissions import IsCenterAdmin
 
 from centers.models import Teacher
 
 
 class TeacherDeleteView(DestroyAPIView):
     queryset = Teacher.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsCenterAdmin]
     http_method_names = ['delete']
     lookup_field = 'id'
     

@@ -14,7 +14,7 @@ urlpatterns = [
     path('applications/update/<int:id>/', ApplicationUpdateAPIView.as_view(), name='applications-update'),
     path('applications/delete/<int:id>/', ApplicationDeleteAPIView.as_view(), name='applications-delete'),
 
-    path('certificates/', CertificateListCreateAPIView.as_view(), name='certificate-list-create'),
-    path('certificates/<int:pk>/', CertificateRetrieveAPIView.as_view(), name='certificate-detail'),
-    path('certificates/<int:pk>/approve/', CertificateApproveAPIView.as_view(), name='certificate-approve'),
+    path('certificat/', CertificateListCreateAPIView.as_view(), name='certificate-list-create'),
+    path('certificat/<int:pk>/', CertificateRetrieveAPIView.as_view(), name='certificate-detail'),
+    path('certificat/<int:pk>/approve/', CertificateApproveAPIView.as_view(), name='certificate-approve'),
 ]

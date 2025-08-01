@@ -1,6 +1,7 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import NotFound
+from centers.permissions import IsCenterAdmin
 
 from centers.api_endponds.Teacher.List.serializers import TeacherSerializer
 from centers.models import Teacher
@@ -8,7 +9,7 @@ from centers.models import Teacher
 
 class TeasherListAPIView(ListAPIView):
     serializer_class = TeacherSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsCenterAdmin]
     
     def get_queryset(self):
         return Teacher.objects.all()

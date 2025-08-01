@@ -6,6 +6,7 @@ from .models import Center, Teacher, Location, Story, Region, City
 class CenterAdmin(admin.ModelAdmin):
     list_display = ('name', 'owner', 'phone_number', 'payment_status')
     list_filter = ('payment_status', )
+    filter_horizontal = ('admins',)
     search_fields = ('name', 'phone_number', 'location')
     list_display_links = ('name', 'owner')
 

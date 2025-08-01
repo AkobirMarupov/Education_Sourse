@@ -2,6 +2,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
+from centers.permissions import IsCenterAdmin
 from drf_yasg import openapi
 from rest_framework.parsers import MultiPartParser, FormParser
 
@@ -10,7 +11,7 @@ from centers.api_endponds.Locations.Create.serializers import LocationCreateSeri
 
 class LocationCreateAPIView(CreateAPIView):
     serializer_class = LocationCreateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsCenterAdmin]
     parser_classes = [MultiPartParser, FormParser]
 
     @swagger_auto_schema(

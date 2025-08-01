@@ -40,6 +40,7 @@ LOCAL_APPS = [
     'courses',
     'centers',
     'applications',
+    'student',
 ]
 
 EXTERNAL_APPS = [
@@ -170,10 +171,10 @@ SWAGGER_SETTINGS = {
 #Authorize
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT uchun
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # ← BUNI QO‘SHING
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
 

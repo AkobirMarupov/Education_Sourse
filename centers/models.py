@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import timedelta
+from account.models import User
 
 from common.models import BaseModel
 from courses.models import Course
@@ -17,6 +18,7 @@ class Center(BaseModel):
     name = models.CharField(max_length=200, null=False, blank=False)
     description = models.TextField(null=True, blank=True)
     phone_number = models.CharField(max_length=65, null=True, blank=True)
+    admins = models.ManyToManyField(User, related_name='admin_of_centers')
     location = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
     payment_status = models.CharField(
